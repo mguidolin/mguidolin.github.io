@@ -20,7 +20,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>Mattia Guidolin</h1>
+						<h1 id="title">Mattia Guidolin</h1>
 						<p>Postdoctoral Researcher &nbsp;&bull;&nbsp; <a href="http://www.gest.unipd.it">DTG</a> &nbsp;&bull;&nbsp; <a href="https://www.unipd.it">UNIPD</a></p>
 						<nav>
 							<ul>
@@ -29,7 +29,7 @@
 								<li><a href="https://www.scopus.com/authid/detail.uri?authorId=57212468487" class="icon solid fa-university"><span class="label">Scopus</span></a></li>
 								<li><a href="https://github.com/mguidolin" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								<li><a href="https://www.linkedin.com/in/mguidolin" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="email.html" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								<li><a href="#" class="icon solid fa-envelope" onclick="toggleEmail(); return false;"><span class="label">Email</span></a></li>
 							</ul>
 						</nav>
 					</header>
@@ -45,6 +45,34 @@
 			window.onload = function() { document.body.classList.remove('is-preload'); }
 			window.ontouchmove = function() { return false; }
 			window.onorientationchange = function() { document.body.scrollTop = 0; }
+
+			var showingEmail = false;
+			function toggleEmail() {
+				var nameElement = document.getElementById('title');
+				// Lock the height to prevent jumping
+				if (!nameElement.style.height) {
+					nameElement.style.height = nameElement.offsetHeight + 'px';
+				}
+				nameElement.style.transition = 'opacity 0.5s ease-in-out';
+				nameElement.style.opacity = '0';
+
+				setTimeout(function() {
+					if (showingEmail) {
+						nameElement.textContent = 'Mattia Guidolin';
+						nameElement.style.fontSize = '';
+						nameElement.style.display = '';
+						nameElement.style.alignItems = '';
+					} else {
+						nameElement.textContent = 'mattia.guidolin [at] unipd.it';
+						nameElement.style.fontSize = '3em';
+						nameElement.style.display = 'flex';
+						nameElement.style.alignItems = 'flex-end';
+						nameElement.style.justifyContent = 'center';
+					}
+					showingEmail = !showingEmail;
+					nameElement.style.opacity = '1';
+				}, 500);
+			}
 		</script>
 	</body>
 </html>
